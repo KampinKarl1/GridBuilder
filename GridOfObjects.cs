@@ -10,8 +10,7 @@ public class GridOfObjects : MonoBehaviour
     [Space, Header("Tick this to generate the grid. It won't give you any tasty feedback. It'll just build the grid")]
     [SerializeField] private bool buildGrid = false;
 
-    [Header("You didn't like the grid? You set an objectParent? DESTROY ALL CHILDREN")]
-    [SerializeField] private bool destroyGrid = false;
+   
 
     [Space, Header("Grid Stats")]
     [SerializeField] private int x_Length = 0;//Normally wouldn't put an underscore but I feel like the x and y are important.
@@ -57,7 +56,15 @@ public class GridOfObjects : MonoBehaviour
         {
             destroyGrid = false;
 
-            if (objectParent == null)
+            //Doesn't work.
+            //DestroyGrid();
+        }
+    }
+    // [Header("You didn't like the grid? You set an objectParent? DESTROY ALL CHILDREN")]
+   // [SerializeField] private bool destroyGrid = false;
+   private void DestroyGrid()
+   {
+    if (objectParent == null)
                 return;
 
             int length = objectParent.childCount;
@@ -66,12 +73,5 @@ public class GridOfObjects : MonoBehaviour
             {
                 DestroyImmediate(objectParent.GetChild(i));
             }
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   }
 }
